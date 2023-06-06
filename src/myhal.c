@@ -2,13 +2,7 @@
 #include <chip.h>
 #include <stddef.h>
 
-struct pinGPIO {
-    uint8_t puerto;
-    uint8_t pin;
-    uint8_t numRegistroGPIO;
-    uint8_t bitRegistroGPIO;
-    uint8_t funcion;   
-};
+
 
 static pinGPIO const tablaConfigPinGpio[MUX_NUM_PUERTOS][MUX_NUM_PINES] = {
     [0] = {{0}}, // NO USADO
@@ -41,6 +35,10 @@ static pinGPIO const tablaConfigPinGpio[MUX_NUM_PUERTOS][MUX_NUM_PINES] = {
         [11] = {.puerto=2,.pin=11,.numRegistroGPIO = 1, .bitRegistroGPIO = 11, .funcion = 0},
         [12] = {.puerto=2,.pin=12,.numRegistroGPIO = 1, .bitRegistroGPIO = 12, .funcion = 0}}
 };
+
+
+
+
 
 pinGPIO const * getPin(uint8_t puerto,uint8_t nrPin)
 {

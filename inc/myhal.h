@@ -7,6 +7,15 @@ typedef enum HAL_ModoPin{
     SALIDA
 }HAL_ModoPin;
 
+
+struct pinGPIO {
+    uint8_t puerto;
+    uint8_t pin;
+    uint8_t numRegistroGPIO;
+    uint8_t bitRegistroGPIO;
+    uint8_t funcion;   
+};
+
 typedef struct pinGPIO pinGPIO;
 
 #define MUX_NUM_PUERTOS 3 

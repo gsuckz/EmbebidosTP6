@@ -61,43 +61,8 @@
 /* === Public function implementation ========================================================= */
 
 int main(void) {
-
-    int divisor = 0;
-    bool current_state, last_state = false;
-    configBoard();
-    while (true) {
-        if (getBotonState( TEC_1 ) == 0) {
-           set_led(LED_B,1);
-        } else {
-           set_led(LED_B,0);
-        }
-
-        current_state = (getBotonState(TEC_2) == 0);
-        if ((current_state) && (!last_state)) {
-            toogleLed(LED_1);
-        }
-        last_state = current_state;
-
-        if (getBotonState(TEC_3) == 0) {
-           set_led(LED_2,1);
-        }
-        if (getBotonState(TEC_4) == 0) {
-            set_led(LED_2,0);
-        }
-        divisor++;
-        if (divisor == 5) {
-            divisor = 0;
-             toogleLed(LED_3);
-        }
-
-        for (int index = 0; index < 100; index++) {
-            for (int delay = 0; delay < 25000; delay++) {
-                __asm("NOP");
-            }
-        }
-    }
+    
 }
-
 /* === End of documentation ==================================================================== */
 
 /** @} End of module definition for doxygen */
