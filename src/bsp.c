@@ -1,6 +1,25 @@
 #include "mybsp.h"
+#include "myhal.h"
 
-Poncho poncho;
+static Poncho poncho;
+
+
+struct Poncho
+{
+    Display * display;
+    Pin disp_digito[4];
+    Pin disp_segmentos[7];
+    Pin ACEPTAR;
+    Pin CANCELAR;
+    Pin F[4];
+
+    Pin BUZZER;
+};
+
+struct Pin{
+    uint8_t puerto;
+    uint8_t pin;
+}
 
 static pinGPIO const pin_digitos[4] = {[0] = {.puerto = DIGIT_1_PORT,
                                               .pin = DIGIT_1_PIN,
@@ -120,63 +139,28 @@ Poncho * PonchoInit(void) {
     configPin(&pin_KEY_F3, ENTRADA);
     configPin(&pin_KEY_F4, ENTRADA);
     configPin(&pin_BUZZER, SALIDA);
+    poncho.ACEPTAR = ;
+    poncho.BUZZER ;
+    for (uint8_t i=0;i<=3;i++)
+    {poncho.disp_digito[i];}
+    for (uint8_t i=0;i<=3;i++)
+    {poncho.F[i];}
+    for (uint8_t i=0;i<=3;i++)
+    {poncho.disp_segmentos[i];}
+
+    poncho.display = displayInit(ctrl_segmento , ctrl_digito);
 
     return &poncho;
 }
 
-void writeDisplay(Display * display, uint8_t digito, uint8_t numero) {
-    uint8_t caracter;
-    switch (numero) { // xGFEDCBA
-    case 0:
-        caracter = 0b0111110;
-        break;
-    case 1:
-        caracter = 0b0000110;
-        break;
-    case 2:
-        caracter = 0b01011011;
-        break;
-    case 3:
-        caracter = 0b01001111;
-        break;
-    case 4:
-        caracter = 0b01100110;
-        break;
-    case 5:
-        caracter = 0b0000000;
-        break;
-    case 6:
-        caracter = 0b0000000;
-        break;
-    case 7:
-        caracter = 0b0000000;
-        break;
-    case 8:
-        caracter = 0b0000000;
-        break;
-    case 9:
-        caracter = 0b0000000;
-        break;
-    default:
-        caracter = 0;
-        break;
-    }
-    display->segmentos_digito[digito] = caracter;
-    return;
+
+void ctrl_segmento(uint8_t seg, bool estado){
+    writePin(&poncho.disp_segmentos[seg],estado);
+}
+void ctrl_digito(uint8_t dig, bool estado){
+    writePin(&poncho.disp_digito[dig],estado);
 }
 
-void drawDisplay(Display * display) {
-    static uint8_t digito_activo = 0;
-    writePin(&pin_digitos[digito_activo], 0);
-    digito_activo++;
-    if (digito_activo > 4)
-        digito_activo = 0;
-    for (uint8_t i = 0; i <= 6; i++) {
-        writePin(&pin_segmentos[i], (display->segmentos_digito[digito_activo] & (1U << (i))));
-    }
-    writePin(&pin_digitos[digito_activo], 1);
-    return;
-}
 
 //bool leerBoton(pinGPIO pin) {
 //    static bool ACEPTAR;
