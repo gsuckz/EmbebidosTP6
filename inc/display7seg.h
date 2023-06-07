@@ -24,7 +24,7 @@ typedef struct Display {
  * @param digito Digito que se quiere escribir
  * @param numero Numero que se quiere dibujar (0-9)
  */
-void writeDisplay   (Display * display, uint8_t digito, uint8_t numero); //char?
+void writeDisplayDig   (Display * display, uint8_t digito, uint8_t numero); //char?
 
 /**
  * @brief Muestra lo que hay en la memoria de video en el Display

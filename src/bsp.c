@@ -12,7 +12,6 @@ struct Poncho
     Pin ACEPTAR;
     Pin CANCELAR;
     Pin F[4];
-
     Pin BUZZER;
 };
 
@@ -121,47 +120,24 @@ static pinGPIO const pin_BUZZER = {.puerto = BUZZER_PORT,
                                    .funcion = BUZZER_FUNC};
 
 Poncho * PonchoInit(void) {
-    configPin(&pin_digitos[0], SALIDA);
-    configPin(&pin_digitos[1], SALIDA);
-    configPin(&pin_digitos[2], SALIDA);
-    configPin(&pin_digitos[3], SALIDA);
-    configPin(&pin_segmentos[0], SALIDA);
-    configPin(&pin_segmentos[1], SALIDA);
-    configPin(&pin_segmentos[2], SALIDA);
-    configPin(&pin_segmentos[3], SALIDA);
-    configPin(&pin_segmentos[4], SALIDA);
-    configPin(&pin_segmentos[5], SALIDA);
-    configPin(&pin_segmentos[6], SALIDA);
-    configPin(&pin_ACEPTAR, ENTRADA);
-    configPin(&pin_CANCELAR, ENTRADA);
-    configPin(&pin_KEY_F1, ENTRADA);
-    configPin(&pin_KEY_F2, ENTRADA);
-    configPin(&pin_KEY_F3, ENTRADA);
-    configPin(&pin_KEY_F4, ENTRADA);
-    configPin(&pin_BUZZER, SALIDA);
-    poncho.ACEPTAR = ;
-    poncho.BUZZER ;
+    configPin(&poncho.CANCELAR,ENTRADA);
+    configPin(&poncho.ACEPTAR,ENTRADA);
+    configPin(&poncho.BUZZER,ENTRADA);
     for (uint8_t i=0;i<=3;i++)
-    {poncho.disp_digito[i];}
+    {configPin(&poncho.F[i],ENTRADA);}
     for (uint8_t i=0;i<=3;i++)
-    {poncho.F[i];}
+    {configPin(&poncho.disp_digito[i],SALIDA);}
     for (uint8_t i=0;i<=3;i++)
-    {poncho.disp_segmentos[i];}
-
+    {configPin(&poncho.disp_segmentos[i],SALIDA);}
     poncho.display = displayInit(ctrl_segmento , ctrl_digito);
-
     return &poncho;
 }
-
-
 void ctrl_segmento(uint8_t seg, bool estado){
     writePin(&poncho.disp_segmentos[seg],estado);
 }
 void ctrl_digito(uint8_t dig, bool estado){
     writePin(&poncho.disp_digito[dig],estado);
 }
-
-
 //bool leerBoton(pinGPIO pin) {
 //    static bool ACEPTAR;
 //    static bool ACEPTAR;
