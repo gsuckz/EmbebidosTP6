@@ -1,5 +1,6 @@
 #ifndef PONCHO_H
 #define PONCHO_H
+#include "chip.h"
 
 
 #define DIGITS_GPIO   0
