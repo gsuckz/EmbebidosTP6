@@ -61,15 +61,12 @@
 /* === Public function implementation ========================================================= */
 
 int main(void) {
-    Poncho * poncho;
+    Poncho_p poncho;
     poncho = PonchoInit();
-    writeDisplay(&poncho->display,0,1);
-    writeDisplay(&poncho->display,1,2);
-    writeDisplay(&poncho->display,2,3);
-    writeDisplay(&poncho->display,3,4);
+    PonchoWriteDisplay(poncho,1000);
     while (1)
     {
-        drawDisplay(&(poncho->display));
+        drawDisplay(poncho->display);
     }
 }
 /* === End of documentation ==================================================================== */

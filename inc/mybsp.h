@@ -5,11 +5,7 @@
 #include "display7seg.h"
 #include <stdint.h>
 
-typedef struct Poncho Poncho;
-
-
-
-typedef struct Pin Pin;
+typedef  struct Poncho * Poncho_p;
 
 
 
@@ -18,18 +14,24 @@ typedef struct Pin Pin;
  * 
  * @return Poncho* 
  */
-Poncho * PonchoInit(void);
-
+Poncho_p PonchoInit(void);
 
 /**
- * @brief Leer un boton del Poncho
+ * @brief Lee un boton del poncho
  * 
- * @param boton  
- * @return true Si fue pulsado 
- * @return false Si no fue pulsado
+ * @param poncho El poncho
+ * @param numBoton Número de botón, 0 a 5
+ * @return true Pulsado
+ * @return false No pulsado 
  */
-bool leerBoton (pinGPIO boton);
+bool PonchoBoton(Poncho_p poncho,uint8_t numBoton);
 
-
+/**
+ * @brief Escribe el numero en el Display del Poncho
+ * 
+ * @param poncho El poncho
+ * @param numero 
+ */
+void PonchoWriteDisplay(Poncho_p poncho,unsigned numero);
 
 #endif

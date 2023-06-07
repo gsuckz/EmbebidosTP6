@@ -3,6 +3,13 @@
 #include <stddef.h>
 
 
+typedef struct pinGPIO {
+    uint8_t puerto;
+    uint8_t pin;
+    uint8_t numRegistroGPIO;
+    uint8_t bitRegistroGPIO;
+    uint8_t funcion;   
+    }pinGPIO;
 
 static pinGPIO const tablaConfigPinGpio[MUX_NUM_PUERTOS][MUX_NUM_PINES] = {
     [0] = {{0}}, // NO USADO
@@ -40,35 +47,36 @@ static pinGPIO const tablaConfigPinGpio[MUX_NUM_PUERTOS][MUX_NUM_PINES] = {
 
 
 
-pinGPIO const * getPin(uint8_t puerto,uint8_t nrPin)
+pinGPIO const * getPin(Pin * pin)
 {
     pinGPIO const *valor = NULL;
-    if (puerto < MUX_NUM_PUERTOS && nrPin < MUX_NUM_PINES)
-        valor = &tablaConfigPinGpio[puerto][nrPin];
+    if (pin->puerto < MUX_NUM_PUERTOS && pin->pin < MUX_NUM_PINES)
+        valor = &tablaConfigPinGpio[pin->puerto][pin->pin];
     return valor;
 }
 
 
-void configPin(pinGPIO const * pin, HAL_ModoPin modo)
-{   
+void configPin(Pin const * pin_p, HAL_ModoPin modo)
+{   pinGPIO * pin = getPin(pin_p);
     Chip_SCU_PinMuxSet(pin->puerto, pin->pin, SCU_MODE_INBUFF_EN | SCU_MODE_INACT | pin->funcion);
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO, false);
     Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO, modo);
 }   
 
 
-bool readPin(pinGPIO const * pin)
-    {
+bool readPin(Pin const * pin_p)
+    {   pinGPIO * pin = getPin(pin_p);
         return Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO);
     }
 
 
-void writePin(pinGPIO const * pin, bool valor)
-    {
+void writePin(Pin const * pin_p, bool valor)
+    {   pinGPIO * pin = getPin(pin_p);
         Chip_GPIO_SetPinState(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO, valor);        
         return;
     }
 
-void tooglePin (pinGPIO const * pin ){
+void tooglePin (Pin const * pin_p){
+    pinGPIO * pin = getPin(pin_p);
     Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO);
 }

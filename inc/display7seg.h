@@ -11,6 +11,7 @@ typedef struct Display {
      * 
      */
     uint8_t segmentos_digito[10];
+    uint8_t num_digitos;
     void (*set_segmento) (uint8_t,bool);
     void (*set_digito) (uint8_t,bool);
 
@@ -37,5 +38,5 @@ void drawDisplay (Display * display);
  * 
  * @return Display* Puntero al objeto display creado
  */
-Display * displayInit (void (*set_segmento)(uint8_t,bool),void (*set_digito)(uint8_t,bool) );
+Display * displayInit (void (*set_segmento)(uint8_t,bool),void (*set_digito)(uint8_t,bool),uint8_t set_num_digitos );
 #endif

@@ -2,14 +2,23 @@
 
 Display display;
 
-Display * displayInit(void (*set_segmento)(uint8_t,bool),void (*set_digito)(uint8_t,bool) )
-{
+Display * displayInit(void (*set_segmento)(uint8_t, bool), void (*set_digito)(uint8_t, bool), uint8_t set_num_digitos) {
     display.set_segmento = set_segmento;
-    dispaly.set_digito = set_digito;
+    display.set_digito = set_digito;
+    display.num_digitos = set_num_digitos;
     return &display;
 }
 
-void writeDisplay(Display * display, uint8_t digito, uint8_t numero) {
+void writeDisplay(Display * display, int numero) {
+
+    for (uint8_t i=0; i <= display->num_digitos; i++)
+
+    {   writeDisplayDig(display,i,numero % 10);
+        numero = numero/10;
+    }
+}
+
+void writeDisplayDig(Display * display, uint8_t digito, uint8_t numero) {
     uint8_t caracter;
     switch (numero) { // xGFEDCBA
     case 0:
@@ -54,7 +63,7 @@ void drawDisplay(Display * display) {
     static uint8_t digito_activo = 0;
     display->set_digito(digito_activo, 0);
     digito_activo++;
-    if (digito_activo > 4)
+    if (digito_activo > display->num_digitos)
         digito_activo = 0;
     for (uint8_t segmento_index = 0; segmento_index <= 6; segmento_index++) {
         display->set_segmento(segmento_index, (display->segmentos_digito[digito_activo] & (1U << (segmento_index))));
