@@ -4,9 +4,9 @@ Display display;
 
 Display * displayInit(void (*set_segmento)(uint8_t, bool), void (*set_digito)(uint8_t, bool), uint8_t set_num_digitos) {
     if (!set_digito)
-        return;
+        return 0;
     if (!set_num_digitos)
-        return;
+        return 0;
     display.set_segmento = set_segmento;
     display.set_digito = set_digito;
     display.num_digitos = set_num_digitos - 1;

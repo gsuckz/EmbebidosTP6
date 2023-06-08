@@ -63,7 +63,7 @@
 int main(void) {
     Poncho_p poncho;
     poncho = PonchoInit();
-    uint32_t a, numero = 9999;
+    uint32_t numero = 8888;
     while (1) {
         if (PonchoBotonCancelar(poncho)) {
             numero--;

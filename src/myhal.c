@@ -5,7 +5,7 @@
 
 pinGPIO const * getPin(Pin const * pin) {
     if (!pin)
-        return;
+        return 0;
     pinGPIO const * valor = NULL;
     if (pin->puerto < MUX_NUM_PUERTOS && pin->pin < MUX_NUM_PINES)
         valor = &tablaConfigPinGpio[pin->puerto][pin->pin];
@@ -26,7 +26,7 @@ void configPin(Pin const * pin_p, HAL_ModoPin modo) {
 
 bool readPin(Pin const * pin_p) {
     if (!pin_p)
-        return;
+        return 0;
     pinGPIO const * pin = getPin(pin_p);
     return Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, pin->numRegistroGPIO, pin->bitRegistroGPIO);
 }

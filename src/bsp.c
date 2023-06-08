@@ -66,13 +66,13 @@ static void ctrl_digito(uint8_t dig, bool estado) {
 
 void PonchoWriteDisplay(Poncho * poncho, unsigned numero) {
     if (!poncho)
-        return;
+        return  ;
     writeDisplay(poncho->display, numero);
 }
 
 bool PonchoBotonCancelar(Poncho * poncho) {
     if (!poncho)
-        return;
+        return 0;
     static bool estado;
     bool estadon = readPin(&poncho->CANCELAR);
 
@@ -86,7 +86,7 @@ bool PonchoBotonCancelar(Poncho * poncho) {
 
 bool PonchoBotonAceptar(Poncho * poncho) {
     if (!poncho)
-        return;
+        return 0;
     static bool estado;
     bool estadon = readPin(&poncho->ACEPTAR);
 
@@ -100,7 +100,7 @@ bool PonchoBotonAceptar(Poncho * poncho) {
 
 bool PonchoBotonFuncion(Poncho * poncho, uint8_t i) {
     if (!poncho || i > 4)
-        return;
+        return 0;
     static bool estado[4];
     i--;
     bool estadon = readPin(&poncho->F[i]);
