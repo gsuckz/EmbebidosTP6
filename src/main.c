@@ -68,9 +68,9 @@ int main(void) {
     {   if(PonchoBotonAceptar(poncho))   {numero = 9999; PonchoBuzzer(poncho,1);} 
         if(PonchoBotonCancelar(poncho))  {numero = 0; PonchoBuzzer(poncho,0);}  
         if(PonchoBotonFuncion(poncho,1)) numero ++;
-        if(PonchoBotonFuncion(poncho,2)) numero = 10;
-        if(PonchoBotonFuncion(poncho,3)) numero = 100;
-        if(PonchoBotonFuncion(poncho,4)) numero = 1000;
+        if(PonchoBotonFuncion(poncho,2)) numero = numero + 10;
+        if(PonchoBotonFuncion(poncho,3)) numero = numero + 100;
+        if(PonchoBotonFuncion(poncho,4)) numero = numero + 1000;
         PonchoWriteDisplay(poncho,numero);
         PonchoDrawDisplay(poncho);
     }
