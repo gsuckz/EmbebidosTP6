@@ -1,4 +1,4 @@
-#include "myhal.h"
+
 #define MUX_NUM_PUERTOS 7
 #define MUX_NUM_PINES 18
 

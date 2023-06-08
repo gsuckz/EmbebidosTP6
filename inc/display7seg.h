@@ -1,8 +1,8 @@
 #ifndef DISPLAY7_SEG_H
 #define DISPLAY7_SEG_H
-#include "myhal.h"
 #include <stdint.h>
-
+#include <stdlib.h>
+#include <stdbool.h>
 
 typedef uint8_t * Segmentos_dig;
 
@@ -15,12 +15,14 @@ typedef struct Display {
      */
     Segmentos_dig  segmentos_digito;
     uint8_t num_digitos;
-   // void (*set_segmento) (uint8_t,bool);
-   // void (*set_digito) (uint8_t,bool);
-//
+    void (* set_segmento) (uint8_t, bool);
+    void (* set_digito)   (uint8_t, bool);
+
 }Display;
 
 
+
+void writeDisplay(Display * display, int numero);
 /**
  * @brief Escribe en la memoria de video del controlador del Display
  * 

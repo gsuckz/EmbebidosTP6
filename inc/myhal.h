@@ -16,7 +16,7 @@ typedef struct pinGPIO {
     uint8_t funcion;
 } pinGPIO;
 
-#include "tablaGPIO.h"
+
 
 /**
  * @brief Configura el pin del puerto como entrada o salida, si es salida inicia en 0
