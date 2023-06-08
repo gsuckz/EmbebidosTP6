@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-typedef enum HAL_ModoPin { ENTRADA, SALIDA } HAL_ModoPin;
+typedef enum HAL_ModoPin { ENTRADA , SALIDA } HAL_ModoPin;
 
 typedef struct Pin {
     uint8_t puerto;

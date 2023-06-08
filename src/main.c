@@ -40,9 +40,9 @@
 
 /* === Headers files inclusions =============================================================== */
 
-
-#include <stdbool.h>
 #include "mybsp.h"
+#include <stdbool.h>
+#include "poncho.h"
 
 /* === Macros definitions ====================================================================== */
 
@@ -63,16 +63,38 @@
 int main(void) {
     Poncho_p poncho;
     poncho = PonchoInit();
-    int numero = 0;
-    while (1)
-    {   if(PonchoBotonAceptar(poncho))   {numero = 9999; PonchoBuzzer(poncho,1);} 
-        if(PonchoBotonCancelar(poncho))  {numero = 0; PonchoBuzzer(poncho,0);}  
-        if(PonchoBotonFuncion(poncho,1)) numero ++;
-        if(PonchoBotonFuncion(poncho,2)) numero = numero + 10;
-        if(PonchoBotonFuncion(poncho,3)) numero = numero + 100;
-        if(PonchoBotonFuncion(poncho,4)) numero = numero + 1000;
-        PonchoWriteDisplay(poncho,numero);
+    uint32_t a, numero = 9999;
+    while (1) {
+        if (PonchoBotonCancelar(poncho)) {
+            numero--;
+            PonchoBuzzer(poncho, 1);
+        }
+        if (PonchoBotonAceptar(poncho)) {
+            numero = 9999;
+            PonchoBuzzer(poncho, 0);
+        }
+        if (PonchoBotonFuncion(poncho, 1)) {
+            numero++;
+        }
+        if (PonchoBotonFuncion(poncho, 2)) {
+            numero = numero + 10;
+        }
+        if (PonchoBotonFuncion(poncho, 3)) {
+            numero = numero + 100;
+        }
+        if (PonchoBotonFuncion(poncho, 4)) {
+            numero = numero + 1000;
+        } 
+
+    //Pin pin = {.puerto =  KEY_CANCEL_PORT , .pin = KEY_CANCEL_PIN};
+    //    if (readPin(&pin)) {
+    //        numero++;
+    //        PonchoBuzzer(poncho, 1);}
+
+        PonchoWriteDisplay(poncho, numero);
         PonchoDrawDisplay(poncho);
+
+        ;
     }
 }
 /* === End of documentation ==================================================================== */

@@ -32,7 +32,7 @@ static Poncho poncho = {.disp_digito = {[0] = {.puerto = DIGIT_1_PORT, .pin = DI
 
                         .ACEPTAR = {.puerto = KEY_ACCEPT_PORT, .pin = KEY_ACCEPT_PIN},
 
-                        .CANCELAR = {.puerto = KEY_ACCEPT_PORT, .pin = KEY_CANCEL_PIN},
+                        .CANCELAR = {.puerto = KEY_CANCEL_PORT, .pin = KEY_CANCEL_PIN},
 
                         .F = {[0] = {.puerto = KEY_F1_PORT, .pin = KEY_F1_PIN},
                               [1] = {.puerto = KEY_F2_PORT, .pin = KEY_F2_PIN},
@@ -51,7 +51,7 @@ Poncho * PonchoInit(void) {
     for (uint8_t i = 0; i <= 3; i++) {
         configPin(&poncho.disp_digito[i], SALIDA);
     }
-    for (uint8_t i = 0; i <= 3; i++) {
+    for (uint8_t i = 0; i <= 6; i++) {
         configPin(&poncho.disp_segmentos[i], SALIDA);
     }
     poncho.display = displayInit(ctrl_segmento, ctrl_digito, NUM_DISPLAY);
@@ -76,6 +76,7 @@ bool PonchoBotonCancelar(Poncho * poncho) {
         estado = estadon;
         return 1;
     }
+        estado = estadon;
     return 0;
 }
 
@@ -87,18 +88,20 @@ bool PonchoBotonAceptar(Poncho * poncho) {
         estado = estadon;
         return 1;
     }
+        estado = estadon;
     return 0;
 }
 
 bool PonchoBotonFuncion(Poncho * poncho, uint8_t i) {
-    static bool estado[4] = {0};
+    static bool estado[4];
     i--;
-    bool estadon = readPin(&poncho->CANCELAR);
+    bool estadon = readPin(&poncho->F[i]);
 
     if (estado[i] && !estadon) {
         estado[i] = estadon;
         return 1;
     }
+        estado[i] = estadon;
     return 0;
 }
 

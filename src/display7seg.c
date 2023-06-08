@@ -5,8 +5,8 @@ Display display;
 Display * displayInit(void (*set_segmento)(uint8_t, bool), void (*set_digito)(uint8_t, bool), uint8_t set_num_digitos) {
     display.set_segmento = set_segmento;
     display.set_digito = set_digito;
-    display.num_digitos = set_num_digitos;
-    display.segmentos_digito = calloc(set_num_digitos,1);
+    display.num_digitos = set_num_digitos - 1;
+    display.segmentos_digito = calloc(set_num_digitos,sizeof(uint8_t));
 
     return &display;
 }
@@ -24,7 +24,7 @@ void writeDisplayDig(Display * display, uint8_t digito, uint8_t numero) {
     uint8_t caracter;
     switch (numero) { // xGFEDCBA
     case 0:
-        caracter = 0b0111110;
+        caracter = 0b00111111;
         break;
     case 1:
         caracter = 0b0000110;
@@ -39,19 +39,19 @@ void writeDisplayDig(Display * display, uint8_t digito, uint8_t numero) {
         caracter = 0b01100110;
         break;
     case 5:
-        caracter = 0b0000000;
+        caracter = 0b01101101;
         break;
     case 6:
-        caracter = 0b0000000;
+        caracter = 0b11111101;
         break;
     case 7:
-        caracter = 0b0000000;
+        caracter = 0b0000111;
         break;
     case 8:
-        caracter = 0b0000000;
+        caracter = 0b11111111;
         break;
     case 9:
-        caracter = 0b0000000;
+        caracter = 0b11100111;
         break;
     default:
         caracter = 0;
