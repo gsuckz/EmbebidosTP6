@@ -2,33 +2,26 @@
 #define HAL_H
 #include <stdbool.h>
 #include <stdint.h>
-typedef enum HAL_ModoPin{
-    ENTRADA,
-    SALIDA
-}HAL_ModoPin;
+typedef enum HAL_ModoPin { ENTRADA, SALIDA } HAL_ModoPin;
 
-
-typedef struct Pin{
+typedef struct Pin {
     uint8_t puerto;
     uint8_t pin;
-}Pin;
+} Pin;
 
-
-
-#define MUX_NUM_PUERTOS 3 
-#define MUX_NUM_PINES 13
-
+#define MUX_NUM_PUERTOS 7
+#define MUX_NUM_PINES 18
 
 /**
  * @brief Configura el pin del puerto como entrada o salida, si es salida inicia en 0
- * 
+ *
  * @param pin Puntero a objeto pin
  * @param modo HAL_ModoPin "ENTRADA" o "SALIDA"
  */
 void configPin(Pin const * pin, HAL_ModoPin modo);
 /**
  * @brief Devuelve un Bool con el valor del pin leido
- * 
+ *
  * @param pin Puntero a objeto pin
  * @return true Si esta en alto
  * @return false Si esta en bajo
@@ -36,16 +29,16 @@ void configPin(Pin const * pin, HAL_ModoPin modo);
 bool readPin(Pin const * pin);
 /**
  * @brief Pone el pin del puerto en el valor
- * 
- * 
+ *
+ *
  * @param pin Puntero a objeto pin
- * @param valor Valor a asignar al pin del puerto 
+ * @param valor Valor a asignar al pin del puerto
  */
 void writePin(Pin const * pin, bool valor);
 /**
- * @brief 
- * 
- * @param pin 
+ * @brief
+ *
+ * @param pin
  */
-void tooglePin (Pin const * pin );
+void tooglePin(Pin const * pin);
 #endif

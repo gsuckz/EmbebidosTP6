@@ -63,10 +63,16 @@
 int main(void) {
     Poncho_p poncho;
     poncho = PonchoInit();
-    PonchoWriteDisplay(poncho,1000);
+    int numero = 0;
     while (1)
-    {
-        drawDisplay(poncho->display);
+    {   if(PonchoBotonAceptar(poncho)) numero = 9999;
+        if(PonchoBotonCancelar(poncho)) numero = 0;   
+        if(PonchoBotonFuncion(poncho,1)) numero ++;
+        if(PonchoBotonFuncion(poncho,1)) numero = 10;
+        if(PonchoBotonFuncion(poncho,1)) numero = 100;
+        if(PonchoBotonFuncion(poncho,1)) numero = 1000;
+        PonchoWriteDisplay(poncho,numero);
+        PonchoDrawDisplay(poncho);
     }
 }
 /* === End of documentation ==================================================================== */
