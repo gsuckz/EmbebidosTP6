@@ -3,6 +3,9 @@
 #include "myhal.h"
 #include <stdint.h>
 
+
+typedef uint8_t * Segmentos_dig;
+
 typedef struct Display {
     /**
      * @brief Mapa de bits que determina el estado de encendido (1) o
@@ -10,14 +13,12 @@ typedef struct Display {
      * componen la pantalla. b<0> : A, b<1> : B, ..., b<6> : G
      * 
      */
-    seg_index * segmentos_digito;
+    Segmentos_dig  segmentos_digito;
     uint8_t num_digitos;
     void (*set_segmento) (uint8_t,bool);
     void (*set_digito) (uint8_t,bool);
 
 }Display;
-
-typedef uint8_t * seg_index;
 
 
 /**
