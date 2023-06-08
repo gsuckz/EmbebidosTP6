@@ -41,8 +41,8 @@
 /* === Headers files inclusions =============================================================== */
 
 #include "mybsp.h"
-#include <stdbool.h>
 #include "poncho.h"
+#include <stdbool.h>
 
 /* === Macros definitions ====================================================================== */
 
@@ -84,12 +84,8 @@ int main(void) {
         }
         if (PonchoBotonFuncion(poncho, 4)) {
             numero = numero + 1000;
-        } 
+        }
 
-    //Pin pin = {.puerto =  KEY_CANCEL_PORT , .pin = KEY_CANCEL_PIN};
-    //    if (readPin(&pin)) {
-    //        numero++;
-    //        PonchoBuzzer(poncho, 1);}
 
         PonchoWriteDisplay(poncho, numero);
         PonchoDrawDisplay(poncho);

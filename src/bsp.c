@@ -65,10 +65,14 @@ static void ctrl_digito(uint8_t dig, bool estado) {
 }
 
 void PonchoWriteDisplay(Poncho * poncho, unsigned numero) {
+    if (!poncho)
+        return;
     writeDisplay(poncho->display, numero);
 }
 
 bool PonchoBotonCancelar(Poncho * poncho) {
+    if (!poncho)
+        return;
     static bool estado;
     bool estadon = readPin(&poncho->CANCELAR);
 
@@ -76,11 +80,13 @@ bool PonchoBotonCancelar(Poncho * poncho) {
         estado = estadon;
         return 1;
     }
-        estado = estadon;
+    estado = estadon;
     return 0;
 }
 
 bool PonchoBotonAceptar(Poncho * poncho) {
+    if (!poncho)
+        return;
     static bool estado;
     bool estadon = readPin(&poncho->ACEPTAR);
 
@@ -88,11 +94,13 @@ bool PonchoBotonAceptar(Poncho * poncho) {
         estado = estadon;
         return 1;
     }
-        estado = estadon;
+    estado = estadon;
     return 0;
 }
 
 bool PonchoBotonFuncion(Poncho * poncho, uint8_t i) {
+    if (!poncho || i > 4)
+        return;
     static bool estado[4];
     i--;
     bool estadon = readPin(&poncho->F[i]);
@@ -101,14 +109,18 @@ bool PonchoBotonFuncion(Poncho * poncho, uint8_t i) {
         estado[i] = estadon;
         return 1;
     }
-        estado[i] = estadon;
+    estado[i] = estadon;
     return 0;
 }
 
 void PonchoDrawDisplay(Poncho * poncho) {
+    if (!poncho)
+        return;
     drawDisplay(poncho->display);
 }
 
-void PonchoBuzzer(Poncho * poncho,bool estado){
-    writePin(&poncho->BUZZER,estado);
+void PonchoBuzzer(Poncho * poncho, bool estado) {
+    if (!poncho)
+        return;
+    writePin(&poncho->BUZZER, estado);
 }

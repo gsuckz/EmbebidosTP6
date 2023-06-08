@@ -3,24 +3,33 @@
 Display display;
 
 Display * displayInit(void (*set_segmento)(uint8_t, bool), void (*set_digito)(uint8_t, bool), uint8_t set_num_digitos) {
+    if (!set_digito)
+        return;
+    if (!set_num_digitos)
+        return;
     display.set_segmento = set_segmento;
     display.set_digito = set_digito;
     display.num_digitos = set_num_digitos - 1;
-    display.segmentos_digito = calloc(set_num_digitos,sizeof(uint8_t));
+    display.segmentos_digito = calloc(set_num_digitos, sizeof(uint8_t));
 
     return &display;
 }
 
 void writeDisplay(Display * display, int numero) {
+    if (!display)
+        return;
 
-    for (uint8_t i=0; i <= display->num_digitos; i++)
+    for (uint8_t i = 0; i <= display->num_digitos; i++)
 
-    {   writeDisplayDig(display,i,numero % 10);
-        numero = numero/10;
+    {
+        writeDisplayDig(display, i, numero % 10);
+        numero = numero / 10;
     }
 }
 
 void writeDisplayDig(Display * display, uint8_t digito, uint8_t numero) {
+    if (!display)
+        return;
     uint8_t caracter;
     switch (numero) { // xGFEDCBA
     case 0:
@@ -62,6 +71,8 @@ void writeDisplayDig(Display * display, uint8_t digito, uint8_t numero) {
 }
 
 void drawDisplay(Display * display) {
+    if (!display)
+        return;
     static uint8_t digito_activo = 0;
     display->set_digito(digito_activo, 0);
     digito_activo++;
