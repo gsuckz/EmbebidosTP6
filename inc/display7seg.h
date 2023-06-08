@@ -15,9 +15,9 @@ typedef struct Display {
      */
     Segmentos_dig  segmentos_digito;
     uint8_t num_digitos;
-    void (*set_segmento) (uint8_t,bool);
-    void (*set_digito) (uint8_t,bool);
-
+   // void (*set_segmento) (uint8_t,bool);
+   // void (*set_digito) (uint8_t,bool);
+//
 }Display;
 
 
