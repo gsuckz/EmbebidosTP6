@@ -33,4 +33,11 @@ void PonchoWriteDisplay(Poncho_p poncho, unsigned numero);
  */
 void PonchoDrawDisplay(Poncho_p poncho);
 
+
+/**
+ * @brief Enciende o apaga el buzzer
+ * 
+ */
+void PonchoBuzzer(Poncho_p poncho,bool estado)
+
 #endif

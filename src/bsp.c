@@ -106,3 +106,6 @@ void PonchoDrawDisplay(Poncho * poncho) {
     drawDisplay(poncho->display);
 }
 
+void PonchoBuzzer(Poncho * poncho,bool estado){
+    writePin(&poncho->BUZZER,estado);
+}
