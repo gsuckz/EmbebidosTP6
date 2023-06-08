@@ -65,8 +65,8 @@ int main(void) {
     poncho = PonchoInit();
     int numero = 0;
     while (1)
-    {   if(PonchoBotonAceptar(poncho)) numero = 9999;
-        if(PonchoBotonCancelar(poncho)) numero = 0;   
+    {   if(PonchoBotonAceptar(poncho))   numero = 9999;
+        if(PonchoBotonCancelar(poncho))  numero = 0;   
         if(PonchoBotonFuncion(poncho,1)) numero ++;
         if(PonchoBotonFuncion(poncho,1)) numero = 10;
         if(PonchoBotonFuncion(poncho,1)) numero = 100;

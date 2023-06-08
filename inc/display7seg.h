@@ -8,7 +8,7 @@ typedef uint8_t * Segmentos_dig;
 
 typedef struct Display {
     /**
-     * @brief Mapa de bits que determina el estado de encendido (1) o
+     * @brief Puntero al mapa de bits que determina el estado de encendido (1) o
      * apagado (0) de los segmentos de los display de 7 segmentos que
      * componen la pantalla. b<0> : A, b<1> : B, ..., b<6> : G
      * 
