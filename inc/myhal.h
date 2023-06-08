@@ -2,6 +2,7 @@
 #define HAL_H
 #include <stdbool.h>
 #include <stdint.h>
+
 typedef enum HAL_ModoPin { ENTRADA, SALIDA } HAL_ModoPin;
 
 typedef struct Pin {
@@ -9,8 +10,13 @@ typedef struct Pin {
     uint8_t pin;
 } Pin;
 
-#define MUX_NUM_PUERTOS 7
-#define MUX_NUM_PINES 18
+typedef struct pinGPIO {
+    uint8_t numRegistroGPIO;
+    uint8_t bitRegistroGPIO;
+    uint8_t funcion;
+} pinGPIO;
+
+#include "tablaGPIO.h"
 
 /**
  * @brief Configura el pin del puerto como entrada o salida, si es salida inicia en 0

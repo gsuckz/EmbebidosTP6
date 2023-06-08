@@ -40,9 +40,9 @@
 
 /* === Headers files inclusions =============================================================== */
 
-#include "mybsp.h"
-#include "chip.h"
+
 #include <stdbool.h>
+#include "mybsp.h"
 
 /* === Macros definitions ====================================================================== */
 

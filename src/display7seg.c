@@ -6,6 +6,8 @@ Display * displayInit(void (*set_segmento)(uint8_t, bool), void (*set_digito)(ui
     display.set_segmento = set_segmento;
     display.set_digito = set_digito;
     display.num_digitos = set_num_digitos;
+    display.segmentos_digito = calloc(set_num_digitos,1);
+
     return &display;
 }
 

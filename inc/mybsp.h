@@ -15,9 +15,9 @@ typedef struct Poncho * Poncho_p;
  */
 Poncho_p PonchoInit(void);
 
-bool PonchoBotonCancelar(Poncho * poncho);
-bool PonchoBotonAceptar(Poncho * poncho);
-bool PonchoBotonFuncion(Poncho * poncho, uint8_t i);
+bool PonchoBotonCancelar(Poncho_p poncho);
+bool PonchoBotonAceptar(Poncho_p poncho);
+bool PonchoBotonFuncion(Poncho_p poncho, uint8_t i);
 
 /**
  * @brief Escribe el numero en el Display del Poncho

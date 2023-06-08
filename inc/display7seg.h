@@ -10,12 +10,14 @@ typedef struct Display {
      * componen la pantalla. b<0> : A, b<1> : B, ..., b<6> : G
      * 
      */
-    uint8_t segmentos_digito[10];
+    seg_index * segmentos_digito;
     uint8_t num_digitos;
     void (*set_segmento) (uint8_t,bool);
     void (*set_digito) (uint8_t,bool);
 
 }Display;
+
+typedef uint8_t * seg_index;
 
 
 /**
@@ -34,9 +36,12 @@ void writeDisplayDig   (Display * display, uint8_t digito, uint8_t numero); //ch
 void drawDisplay (Display * display);
 
 /**
- * @brief Crea un Display
+ * @brief Inicia un objeto display
  * 
- * @return Display* Puntero al objeto display creado
+ * @param set_segmento Funcion para controlar los segmentos
+ * @param set_digito Funcion para controlar el Comun
+ * @param set_num_digitos Cantidad de digitos del display
+ * @return Display* 
  */
 Display * displayInit (void (*set_segmento)(uint8_t,bool),void (*set_digito)(uint8_t,bool),uint8_t set_num_digitos );
 #endif
